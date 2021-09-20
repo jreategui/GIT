@@ -18,7 +18,7 @@ namespace CargaFicherosApp.Helpers
                 {
 
                     //reader.NextResult()  ; 
-                    while (reader.Name != tapName || reader.Name == null ) 
+                    while ((reader.Name != tapName || reader.Name == null) && !string.IsNullOrEmpty(tapName)) 
                     {
                         reader.NextResult();
                         if (reader.Name == null)

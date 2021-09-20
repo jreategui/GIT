@@ -25,6 +25,18 @@ namespace CargaFicherosApp.Compras.Helpers
                 {
                     return null;
                 }
+
+                if (!int.TryParse(Convert.ToString(reader.GetValue(0)), out int tmp))
+                {
+                    return null;
+                }
+
+                if (tmp<2010)
+                {
+                    return null;
+                }
+
+
                 var result = new DWHModel
                 {
                     Year = Convert.ToString(reader.GetValue(0)),
@@ -39,10 +51,10 @@ namespace CargaFicherosApp.Compras.Helpers
                     Budget = Convert.ToDecimal(string.IsNullOrEmpty(Convert.ToString(reader.GetValue(9))) ? "0" : Convert.ToString(reader.GetValue(9))),
                     Bestellwert = Convert.ToDecimal(string.IsNullOrEmpty(Convert.ToString(reader.GetValue(10))) ? "0" : Convert.ToString(reader.GetValue(10))),
                     BestBid = Convert.ToDecimal(string.IsNullOrEmpty(Convert.ToString(reader.GetValue(11)).Replace("--", "0")) ? "0" : Convert.ToString(reader.GetValue(11)).Replace("--", "0")),
-                    Savings = Convert.ToDecimal(string.IsNullOrEmpty(Convert.ToString(reader.GetValue(12)).Replace("--", "0")) ? "0" : Convert.ToString(reader.GetValue(12)).Replace("--", "0")),
-                    Performance = Convert.ToDecimal(string.IsNullOrEmpty(Convert.ToString(reader.GetValue(13)).Replace("--", "0")) ? "0" : Convert.ToString(reader.GetValue(13)).Replace("--", "0")),
-                    SavingsPer = Convert.ToDecimal(string.IsNullOrEmpty(Convert.ToString(reader.GetValue(14)).Replace("--", "0")) ? "0" : Convert.ToString(reader.GetValue(14)).Replace("--", "0")),
-                    PerformancePer = Convert.ToDecimal(string.IsNullOrEmpty(Convert.ToString(reader.GetValue(15)).Replace("--", "0")) ? "0" : Convert.ToString(reader.GetValue(15)).Replace("--", "0"))
+                    Savings = Convert.ToDecimal(Convert.ToDouble(string.IsNullOrEmpty(Convert.ToString(reader.GetValue(12)).Replace("--", "0")) ? "0" : Convert.ToString(reader.GetValue(12)).Replace("--", "0"))),
+                    Performance = Convert.ToDecimal(Convert.ToDouble(string.IsNullOrEmpty(Convert.ToString(reader.GetValue(13)).Replace("--", "0")) ? "0" : Convert.ToString(reader.GetValue(13)).Replace("--", "0"))),
+                    SavingsPer = Convert.ToDecimal(Convert.ToDouble(string.IsNullOrEmpty(Convert.ToString(reader.GetValue(14)).Replace("--", "0")) ? "0" : Convert.ToString(reader.GetValue(14)).Replace("--", "0"))),
+                    PerformancePer = Convert.ToDecimal(Convert.ToDouble(string.IsNullOrEmpty(Convert.ToString(reader.GetValue(15)).Replace("--", "0")) ? "0" : Convert.ToString(reader.GetValue(15)).Replace("--", "0")))
                 };
                 return (TEntity)Convert.ChangeType(result, typeof(TEntity));
             }

@@ -19,6 +19,7 @@
         public decimal SavingsPer { get; set; }
         public decimal PerformancePer { get; set; }
         public string Period { get { return string.Format("{0}{1}",Year ,Month);  }  }
+        public decimal? OrderValue { get; set; }
 
     }
 }

@@ -9,9 +9,9 @@ namespace CargaFicherosApp.Data
     public class GenericRepository<TEntity> : IGenericRepository<TEntity>
         where TEntity : class
     {
-        private readonly comprasContext _dbContext;
+        private readonly DbContext _dbContext;
 
-        public GenericRepository(comprasContext dbContext)
+        public GenericRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
         }

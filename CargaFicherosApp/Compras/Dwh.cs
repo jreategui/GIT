@@ -20,5 +20,7 @@ namespace CargaFicherosApp.Compras
         public decimal? SavingsPer { get; set; }
         public decimal? PerformancePer { get; set; }
         public string Empresa { get; set; }
+        public decimal? OrderValue { get; set; }
+
     }
 }

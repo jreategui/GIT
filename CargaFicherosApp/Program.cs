@@ -18,9 +18,7 @@ namespace CargaFicherosApp
         static void Main(string[] args)
         {
             KSRMController KController;
-
-            GBPLController gBPLController;
-            Console.WriteLine("Por favor indicar el periodo a cargar/analizar: (YYYYMM)");
+         Console.WriteLine("Por favor indicar el periodo a cargar/analizar: (YYYYMM)");
             //  var periodo = Console.ReadLine();
 
 
@@ -58,6 +56,9 @@ namespace CargaFicherosApp
             var option = "";
             var path = @"\\seesmtswqaopf\163\Groups\10-SUP\Compras\Informe_Eficiencias\Generación\";
             var VALID = "";
+
+            ReadDWHCompleteExcelFile(path, "202101", "V");
+
             while (confirm.ToUpper() == "N")
             {
                 Console.WriteLine("Indique el periodo:");
@@ -71,6 +72,7 @@ namespace CargaFicherosApp
                 Console.WriteLine("[4] prueba");
                 Console.WriteLine("[5] Crear sistema de ficheros");
                 Console.WriteLine("[6] Obtener listado de Contratos Extensión");
+                Console.WriteLine("[7] Cargar DHW Local");
                 Console.WriteLine("[X] SALIR");
                 option = Console.ReadLine();
                 Console.WriteLine("Usted ha seleccionado [{0}]. es correcto? Y/N", option);
@@ -103,6 +105,10 @@ namespace CargaFicherosApp
                     break;
                 case "6":
                     GetContractExtensionList(path, period, VALID);
+                    break;
+                case "7":
+                    VALID = ValidateOrProcess();
+                    ReadDWHCompleteExcelFile(path, period, VALID);
                     break;
                 case "X":
                     salida = "X";
@@ -214,7 +220,7 @@ namespace CargaFicherosApp
                     {
                         Console.WriteLine("{2};K-SRM Distinto al PREFERED; {0}; {1}", Prefered, AcountResource.DefaultIfEmpty("Unknown").FirstOrDefault().ToString(), Nombrea);
                     }
-                    string ee = "";
+                   
                 }
             }
         }
@@ -235,6 +241,43 @@ namespace CargaFicherosApp
             List<KsrmModel> Lista = new List<KsrmModel>();
             kController = new KSRMController();
             kController.LoadKSRMExtensionExcelToDB(string.Format(@"{0}\{1}\RPA\{1}_KSRM_Extensiones.xlsx", path, period), "Plantilla", period, valid);
+
+        }
+
+
+        
+        private static void ReadDWHCompleteExcelFile(string path, string period, string valid)
+        {
+            DWHOracleController dController;
+            DWHExcel<DWHModel> KExcel = new DWHExcel<DWHModel>();
+            List<DWHModel> ListaInsert = new List<DWHModel>();
+            dController = new DWHOracleController();
+            ListaInsert = dController.LoadDWHExcelToDB(string.Format("{0}\\{1}\\QlikView\\{1}_Enviado_por_Frank.xlsx", path, period), "", period, valid);
+            KSRMController kController = new KSRMController();
+            //foreach (var k in ListaInsert)
+            //{
+            //    Console.WriteLine("************************************************************");
+            //    Console.WriteLine("Original Contrato : {0}. Periodo: {1}.   Budget Excel: {2}.  BestBid:{3}", k.ContractNumber, k.Period, k.Budget, k.BestBid);
+            //    var DWHList = dController.GetDWHByNumber(k.ContractNumber);
+            //    foreach (var DM in DWHList)
+            //    {
+            //        Console.WriteLine("Esta DWH Contrato : {0}. Periodo: {1}.   Budget Excel: {2}.  BestBid:{3}", DM.Contractnumber, DM.YearMonth, DM.Budget, DM.Bestbid);
+
+            //    }
+            //    var KSRMList = kController.GetKSRMByNumber(k.ContractNumber);
+            //    foreach (var Ksrm in KSRMList)
+            //    {
+            //        Console.WriteLine("K-SRM    Contrato : {0}. Periodo: {1}.   Budget Excel: {2}.  BestBid:{3}", Ksrm.Nupedido, Ksrm.Fecha, Ksrm.Importe, Ksrm.Importebestbid);
+            //    }
+            //    var KSRMEList = kController.GetKSRMExtensionByNumber(k.ContractNumber);
+            //    foreach (var Ksrme in KSRMEList)
+            //    {
+            //        Console.WriteLine("K-SRMExt Contrato : {0}. Periodo: {1}.   Budget Excel: {2}.  BestBid:{3}", Ksrme.Nupedido, Ksrme.Fecha, Ksrme.Importe, Ksrme.Importebestbid);
+            //    }
+
+
+            //}
+
 
         }
 

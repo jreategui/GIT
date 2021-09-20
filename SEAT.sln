@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CargaFicherosApp", "CargaFicherosApp\CargaFicherosApp.csproj", "{DD29A019-61D1-469C-86E1-8FE96854A866}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWHLoadApp", "DWHLoadApp\DWHLoadApp.csproj", "{BBBCD69F-0DDF-48F7-A0CB-E68DDC776D20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DD29A019-61D1-469C-86E1-8FE96854A866}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD29A019-61D1-469C-86E1-8FE96854A866}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD29A019-61D1-469C-86E1-8FE96854A866}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBBCD69F-0DDF-48F7-A0CB-E68DDC776D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBBCD69F-0DDF-48F7-A0CB-E68DDC776D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBBCD69F-0DDF-48F7-A0CB-E68DDC776D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBBCD69F-0DDF-48F7-A0CB-E68DDC776D20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
