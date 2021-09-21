@@ -70,7 +70,7 @@ namespace CargaFicherosApp.Controllers
                             COMPANY = k.Company,
                             PERFORMANCE_PER = k.PerformancePer,
                             SAVINGS_PER = k.SavingsPer,
-                            ORDERVALUE= (decimal)k.OrderValue
+                            ORDERVALUE= (decimal)k.Bestellwert
                         });
                         Console.WriteLine("Insertando: Contrato : {0}. Periodo: {1}. Budget Excel: {2}. ", k.ContractNumber, k.Period, k.Budget);
                     }

@@ -17,7 +17,8 @@ namespace CargaFicherosApp.Compras
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string ConnString = "USER ID = USER_COMPRAS;Password=Pa_cnntrsvcok21!; DATA SOURCE = 10.82.4.248:1523 / DTWHSEAT;";// PERSIST SECURITY INFO = True
-            optionsBuilder.UseOracle(@ConnString);// "User Id=blog;Password=<password>;Data Source=pdborcl;");
+            optionsBuilder.UseOracle(@ConnString, options => options
+                                        .UseOracleSQLCompatibility("11"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
